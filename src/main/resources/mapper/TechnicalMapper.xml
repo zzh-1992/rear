@@ -1,0 +1,24 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--Copyright @2021 Grapefruit. All rights reserved.-->
+<mapper namespace="com.grapefruit.javaimage.mapper.TechnicalMapper">
+    <resultMap type="com.grapefruit.javaimage.entity.Technical" id="baseResultMap">
+
+        <id column="id" property="id" jdbcType="TINYINT"/>
+        <result column="official_link" property="officialLink" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <!--AbstractResultsetRow-->
+    </resultMap>
+
+    <sql id="columns">
+        id, official_link, title,image
+    </sql>
+
+    <select id="getTechnicals"  resultMap="baseResultMap">
+        select
+        <include refid="columns"/>
+        from t_technical;
+    </select>
+</mapper>

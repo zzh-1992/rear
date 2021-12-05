@@ -1,0 +1,67 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--Copyright @2021 Grapefruit. All rights reserved.-->
+<mapper namespace="com.grapefruit.javaimage.mapper.UserMapper">
+    <resultMap type="com.grapefruit.javaimage.entity.User" id="baseResultMap">
+
+        <id column="uid" property="uid" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="role_id" property="roleId" jdbcType="TINYINT"/>
+        <result column="role" property="role" jdbcType="VARCHAR"/>
+        <!--AbstractResultsetRow-->
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="sign_up_time" property="signUpTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="userSql">
+        uid
+        , name, role_id, password, email, phone, nick_name, sign_up_time
+    </sql>
+
+    <select id="save" parameterType="com.grapefruit.javaimage.entity.User" resultMap="baseResultMap">
+        insert into t_user
+        (<include refid="userSql"></include>)
+        value (
+        #{uid},#{name},#{roleId},#{password},#{email},#{phone},#{nickName},#{signUpTime}
+        );
+    </select>
+
+    <select id="selectUserByPhone" parameterType="java.lang.String" resultMap="baseResultMap">
+        select
+        <include refid="userSql"/>
+        from t_user
+        where phone = #{phone};
+    </select>
+
+    <select id="selectUserByUid" parameterType="java.lang.String" resultMap="baseResultMap">
+        select
+        <include refid="userSql"/>
+        from t_user
+        where uid = #{uid};
+    </select>
+
+    <select id="selectUserByPhoneAndPassword" parameterType="java.lang.String" resultMap="baseResultMap">
+        select
+        <include refid="userSql"/>
+        from t_user
+        where phone = #{phone} and password = #{password};
+    </select>
+
+
+    <select id="getUserList" resultMap="baseResultMap">
+        select t.uid, t.name, t.nick_name, r.role
+        from t_user t
+                 left join t_role r on t.role_id = r.role_id;
+    </select>
+
+    <delete id="deleteUser" parameterType="java.lang.String">
+        delete
+        from t_user
+        where uid = #{uid}
+    </delete>
+
+</mapper>

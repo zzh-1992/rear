@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--Copyright @2021 Grapefruit. All rights reserved.-->
+<mapper namespace="com.grapefruit.javaimage.mapper.RoleMapper">
+    <resultMap type="com.grapefruit.javaimage.entity.Role" id="baseResultMap">
+        <id column="role_id" property="roleId" jdbcType="VARCHAR"/>
+        <result column="permission" property="permission" jdbcType="VARCHAR"/>
+        <result column="role" property="role" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectRoles" resultMap="baseResultMap">
+        select role_id, permission, role
+        from t_role;
+    </select>
+</mapper>

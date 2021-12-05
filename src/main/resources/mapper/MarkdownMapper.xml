@@ -1,0 +1,58 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--Copyright @2021 Grapefruit. All rights reserved.-->
+<mapper namespace="com.grapefruit.javaimage.mapper.MarkdownMapper">
+    <resultMap type="com.grapefruit.javaimage.entity.Markdown" id="baseResultMap">
+
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="BLOB"/>
+        <result column="modifier" property="modifier" jdbcType="VARCHAR"/>
+        <result column="modify_time" property="modifyTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findById" resultMap="baseResultMap">
+        select *
+        from t_markdown
+        where id = #{id}
+    </select>
+
+    <select id="selectAll" resultMap="baseResultMap">
+        select *
+        from t_markdown
+    </select>
+
+    <insert id="save" parameterType="com.grapefruit.javaimage.entity.Markdown">
+        insert into t_markdown
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test='title != null || title != "" '>
+                title ,
+            </if>
+            <if test='content != null || modifier != "" '>
+                content,
+            </if>
+            <if test='modifier != null || modifier != "" '>
+                modifier,
+            </if>
+            <if test='modifyTime != null || modifyTime != "" '>
+                modify_time,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test='title != null || title != "" '>
+                #{title} ,
+            </if>
+            <if test='content != null || modifier != "" '>
+                #{content} ,
+            </if>
+            <if test='modifier != null || modifier != "" '>
+                #{modifier},
+            </if>
+            <if test='modifyTime != null || modifyTime != "" '>
+                #{modifyTime} ,
+            </if>
+        </trim>
+    </insert>
+</mapper>
