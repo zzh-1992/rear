@@ -19,7 +19,7 @@
     </select>
 
     <select id="selectAll" resultMap="baseResultMap">
-        select *
+        select id, title
         from t_markdown
     </select>
 
