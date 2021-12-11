@@ -4,7 +4,12 @@ echo "=============================================="
 echo "=========Begin to create docker image========="
 echo "=============================================="
 
-# 创建镜像
+# 删除原有镜像
+docker rm rear/rear:2.0
+# 删除原有容器
+docker rm /rear:2.0
+
+# 创建新镜像
 docker build -t rear/rear:2.0 .
 
 # 使用镜像创建容器
