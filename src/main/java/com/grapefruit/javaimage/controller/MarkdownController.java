@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +61,13 @@ public class MarkdownController {
     @PostMapping("/downloadMdById")
     public Markdown downloadMdById(@RequestBody Req req) {
         Markdown byId = markdownService.findById(req.getId());
+        String tags = byId.getTags();
+        if (StringUtils.isEmpty(tags)) {
+            byId.setTagArray(new ArrayList<>());
+        } else {
+            String[] split = tags.split(",");
+            byId.setTagArray(Arrays.asList(split));
+        }
         return byId;
     }
 
@@ -70,10 +79,17 @@ public class MarkdownController {
         markdown.setModifier("grape");
         markdown.setModifyTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 
-        markdownRepo.save(markdown);
+        Markdown save = markdownRepo.save(markdown);
         LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 
-        return markdownRepo.save(markdown);
+        String tags = save.getTags();
+        if (StringUtils.isEmpty(tags)) {
+            save.setTagArray(new ArrayList<>());
+        } else {
+            String[] split = tags.split(",");
+            save.setTagArray(Arrays.asList(split));
+        }
+        return save;
     }
 }
 

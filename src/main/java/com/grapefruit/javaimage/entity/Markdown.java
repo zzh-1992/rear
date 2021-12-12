@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.List;
 
 /**
  * 相关描述
@@ -59,4 +61,13 @@ public class Markdown {
      */
     @Column(name = "modify_time")
     String modifyTime;
+
+    /**
+     * 标签/分类
+     */
+    @Column(name = "tags")
+    String tags;
+
+    @Transient
+    List<String> tagArray;
 }
