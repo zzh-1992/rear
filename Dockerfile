@@ -1,4 +1,5 @@
-FROM frolvlad/alpine-oraclejdk8:slim
+FROM openjdk:8u312-oraclelinux8
+
 #基于Java环境
 VOLUME /tmp
 ADD target/imagerear-0.0.1-SNAPSHOT.jar app.jar
