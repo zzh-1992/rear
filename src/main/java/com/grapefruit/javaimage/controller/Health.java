@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+
 /**
  * 健康检查
  *
@@ -20,6 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Health {
     @GetMapping(value = "/")
     public String health() {
-        return "RearService is running ======>";
+        return "RearService is running ======>" + LocalDateTime.now();
     }
 }
