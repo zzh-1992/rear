@@ -4,6 +4,8 @@ echo "=============================================="
 echo "=========Begin to create docker image========="
 echo "=============================================="
 
+mvn package
+
 # 删除原有镜像
 docker rmi rear/rear:2.0
 
