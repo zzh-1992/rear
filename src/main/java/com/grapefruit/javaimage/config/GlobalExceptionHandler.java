@@ -5,8 +5,7 @@
 package com.grapefruit.javaimage.config;
 
 import com.alibaba.fastjson.JSONObject;
-import com.grapefruit.utils.log.LogTools;
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,9 +20,9 @@ import java.util.List;
  * @version 1.0
  * @date 2021-06-05 8:00 上午
  */
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    private final static Logger log = LogTools.getDebugLogger();
 
     @ExceptionHandler
     public JSONObject handle(Exception ex) {
