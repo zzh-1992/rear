@@ -1,50 +1,3 @@
-WebSoket
-```xml
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-websocket</artifactId>
-    </dependency>
-```
-
-```java
-// config
-    @Bean
-    public ServerEndpointExporter serverEndpointExporter() {
-        return new ServerEndpointExporter();
-    }
-// socket class
-    @Component
-    @ServerEndpoint("/msg/{userID}")
-    public class MsgSocket {}
-```
-
-Swagger
-页面
-http://localhost:8888/swagger-ui/index.html#/
-```xml
-        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.github.swagger2markup/swagger2markup -->
-        <dependency>
-            <groupId>io.github.swagger2markup</groupId>
-            <artifactId>swagger2markup</artifactId>
-            <version>1.3.3</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.swagger/swagger-models -->
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-models</artifactId>
-            <version>1.5.21</version>
-        </dependency>
-```
-代码配置
-```java
 /*
  *Copyright @2022 Grapefruit. All rights reserved.
  */
@@ -99,5 +52,3 @@ public class SwaggerConfig {
                 .build();
     }
 }
-```
-
