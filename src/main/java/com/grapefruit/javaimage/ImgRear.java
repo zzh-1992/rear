@@ -4,6 +4,7 @@
 
 package com.grapefruit.javaimage;
 
+import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import io.github.swagger2markup.GroupBy;
 import io.github.swagger2markup.Language;
 import io.github.swagger2markup.Swagger2MarkupConfig;
@@ -27,7 +28,8 @@ import java.nio.file.Paths;
 @MapperScan(basePackages = "com.grapefruit.javaimage.mapper") //或是使用注解@Mapper
 @EnableTransactionManagement
 //@RefreshScope
-@SpringBootApplication(/*exclude= {DataSourceAutoConfiguration.class}*/)
+@NacosPropertySource(dataId = "${nacos.config.data-id}")
+@SpringBootApplication
 public class ImgRear {
     public static void main(String[] args) throws MalformedURLException {
         SpringApplication.run(ImgRear.class, args);
