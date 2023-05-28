@@ -68,6 +68,7 @@ public class MarkdownController {
             String[] split = tags.split(",");
             byId.setTagArray(Arrays.asList(split));
         }
+        byId.setServer("grape");
         return byId;
     }
 
